@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        /* Реализовать функцию objectToQueryString(object), которая принимает аргументом объект, возвращает строку.
+        Примеры работы:
+         console.log(objectToQueryString({user: 'Dmitry'})); // user=Dmitry
+         console.log(objectToQueryString({user: 'Dmitry', password: 'pass'})); // user=Dmitry&password=pass
+         console.log(objectToQueryString({user: 'Dmitry', password: 'pass', id=1})); // user=Dmitry&password=pass&id=1
+         */
+
+        function objectToQueryString(arg) {
+            var str="";
+            for( var i in arg){
+             str+=[i]+"="+ arg[i]+"&"
+            }
+          return str.substring(0, str.length-1);
+        }
+        console.log(objectToQueryString({user: 'Dmitry'}));
+        console.log(objectToQueryString({user: 'Dmitry', password: 'pass'})); // user=Dmitry&password=pass
+        console.log(objectToQueryString({user: 'Dmitry', password: 'pass', id: 1})); // user=Dmitry&password=pass&id=1
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

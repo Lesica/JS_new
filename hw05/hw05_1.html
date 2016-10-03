@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        /*	Написать функцию преобразования цвета из 10-ного представления в 16-ный.
+         Функция должна принимать 3 числа от 0 до 255 и возвращать строковый хеш.
+         */
+        var str = "#";
+        var color = {};
+        color.red = NaN;
+        color.green = NaN;
+        color.blue = NaN;
+        for (var i in color) {
+            while (!(color[i] <= 255 && color[i] >= 0)) {
+                color[i] = +prompt("Введите числовое значение  канала " + i + " в диапазоне от 0 до 255");
+            }
+            str += (color[i].toString(16).length < 2) ?"0" + ( color [i]).toString(16) :(color[i]).toString(16);
+        }
+        alert(str);
+    </script>
+</head>
+<body>
+
+</body>
+</html>
