@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function LinkedList() {
+            this.head = null;
+        }
+        LinkedList.prototype.push = function (val) {
+            var node = {
+                value: val,
+                next: null
+            }
+            if (!this.head) {
+                this.head = node;
+            }
+            else {
+                current = this.head;
+                while (current.next) {
+                    current = current.next;
+                }
+                current.next = node;
+            }
+        }
+        function arrayToList(array) {
+            var list = new LinkedList();
+            for (var i = 0; i < array.length; i++) {
+                list.push(array[i]);
+            }
+            return list;
+        }
+
+        function listToArray(l) {
+            var a = [];
+            if (!l.head) {
+                return a;
+            }
+            else {
+                current = l.head;
+                while (current.next) {
+                    a.push(current.value);
+                    current = current.next;
+                }
+                a.push(current.value); // не забыть последний элемент!!
+                return a;
+            }
+        }
+
+        var l = arrayToList([1, 2, 3, "4"]);
+        //var l=arrayToList([]);
+        var a = listToArray(l);
+        console.log(JSON.stringify(l));
+        console.log(a);
+    </script>
+</head>
+<body>
+
+</body>
+</html>
