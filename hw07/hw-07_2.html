@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    function cell() { //создаю прототип клеточки с цифрой
+        var c = document.createElement("div");
+        c.style.width = "40px";
+        c.style.height = "40px";
+        c.style.border = "1px solid black";
+        c.style.display = "inline-block";
+        return c;
+    }
+    var number = document.createElement("div"); //создаю див, в который засовываю цифры
+    number.appendChild(cell());
+    for (var k=1; k<8; k++){
+        number.appendChild(cell());
+    }
+    document.body.appendChild(number);
+
+    function cell2() { // создаю прототип клеточки с буквой (вообще, надо их совестить с цифровыми. но я пока туплю)
+        var c2 = document.createElement("div");
+        c2.style.width = "40px";
+        c2.style.height = "40px";
+        c2.style.border = "1px solid black";
+
+        return c2;
+    }
+    var number2 = document.createElement("div"); // создаю див, который будет располагаться вертикально, и в нем будут буквы
+    number2.style.display = "inline-block"; // а тут я говорю, что справа от этого дива можно засунуть всю остальну доску
+    number.appendChild(cell2());
+    for (var k=1; k<8; k++){
+        number2.appendChild(cell2());
+    }
+    document.body.appendChild(number2);
+
+    function blue(id) { // это прототип синей клеточки
+        var a = document.createElement("div");
+        a.style.width = "40px";
+        a.style.height = "40px";
+        a.style.backgroundColor = "blue";
+        a.style.border = "1px solid black";
+        a.style.display = "inline-block";
+        a.id = id;
+        return a;
+    }
+
+
+    var odd = document.createElement("div");//рисуем нечетную строку
+    odd.id="line1";
+    odd.style.margin = "0px";
+    odd.style.padding = "0px";
+
+    for (var i=0; i<8; i++){
+        if (i % 2) {
+            odd.appendChild(blue(i));
+        } else {
+            var red=blue(i);
+            red.style.backgroundColor="red";
+            odd.appendChild(red);
+        }
+    }
+    var even = document.createElement("div");//рисуем четную строку
+    even.id="line2";
+    even.style.margin = "0px";
+    even.style.padding = "0px";
+    //document.body.appendChild(even);
+
+    for (var i=0; i<8; i++){
+        if (!(i % 2)) {
+            even.appendChild(blue());
+        } else {
+            var red=blue();
+            red.style.backgroundColor="red";
+            even.appendChild(red);
+        }
+    }
+    for (i =0; i<8; i++){
+        if(i%2){
+            var t=even.cloneNode(true);
+            t.id=i;
+            document.body.appendChild(t);
+        }
+        else {
+            document.body.appendChild(odd.cloneNode(true));
+
+        }
+    }
+
+
+
+    // document.body.appendChild(s);
+    /*
+     for (var k = 1; k < 8; k += 2) {
+     square().parentNode.insertBefore(sq,square().nextSibling);
+     }
+     */
+
+
+</script>
+</body>
+</html>
