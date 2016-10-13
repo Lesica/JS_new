@@ -1,0 +1,132 @@
+<html>
+<head>
+    <title>Chessboard</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        div {
+            border:none;
+            margin: 0px;
+            padding: 0px;
+            font-size: 30px;
+        }
+        .label {
+            border:none;
+            display: inline-block;
+        }
+        .top {
+            height: 35px;
+            width: 40px;
+            text-align: center;
+        }
+        .side {
+            height: 40px;
+            width:40px;
+            text-align: right;
+        }
+        .cell {
+            height: 40px;
+            width: 40px;
+            text-align: center;
+            vertical-align: text-top;
+            #border: 1px solid black;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<script>
+    var characters=["a","b","c","d","e","f","g","h"];
+    function cell(id,txt,c) { //create a square with given id, text and class
+        a=document.createElement("div");
+        a.className=c;
+        if (!txt) {txt="&nbsp;"};
+        a.innerHTML=txt;
+        a.id=id;
+        return a;
+    }
+    function drawBoard(){
+        // create top level labels
+        var e=document.createElement("div");
+        e.className="row";
+        e.appendChild(cell(null,null,'label top')); // add empty cell
+        for (var i=0;i<=7;i++){
+            e.appendChild(cell(null,characters[i],'label top'));
+        }
+        document.body.appendChild(e);
+
+
+        for (var row=8;row>=1;row--){
+            var e=document.createElement("div");
+            e.className="row";
+            e.appendChild(cell(null,row,'label side')); // label
+            for (var col=0;col<=7;col++){
+                e.appendChild(cell(characters[col]+row,null,'cell'));
+            }
+            document.body.appendChild(e);
+        }
+
+
+    }
+    function colorBoard(){
+        for ( var r=0;r<=7;r++){
+            for (var c=1;c<=8;c++){
+                var bgcolor="darkgrey";
+                if (r%2==c%2){
+                    bgcolor="lightgrey";
+                }
+                var id=characters[r]+c;
+                e=document.getElementById(characters[r]+c);
+                e.style.backgroundColor=bgcolor;
+
+            }
+        }
+    }
+
+    function placePieces(){
+        var layout={
+            h8:"&#9820;",
+            g8:"&#9822;",
+            f8:"&#9821;",
+            e8:"&#9818;",
+            d8:"&#9819;",
+            c8:"&#9821;",
+            b8:"&#9822;",
+            a8:"&#9820;",
+            h1:"&#9814;",
+            g1:"&#9816;",
+            f1:"&#9815;",
+            e1:"&#9812;",
+            d1:"&#9813;",
+            c1:"&#9815;",
+            b1:"&#9816;",
+            a1:"&#9814;"
+        };
+        for (i=0;i<=7;i++){ // расставляем пешки
+            var t=characters[i]+"7";
+            layout[t]="&#9823;";
+            t=characters[i]+"2";
+            layout[t]="&#9817;";
+        }
+
+        for (var id in layout){
+            //      console.log("Processing id "+id);
+            var e=document.getElementById(id);
+            e.innerHTML=layout[id];
+        }
+    }
+
+
+    function e2e4(){
+        document.getElementById("e2").innerHTML="&nbsp;";
+        document.getElementById("e4").innerHTML="&#9817";
+    }
+
+
+    drawBoard();
+    setTimeout(colorBoard,2000);
+    setTimeout(placePieces,4000);
+    setTimeout(e2e4,6000);
+
+</script>
